@@ -1,4 +1,11 @@
-######
+##############################################
+
+#This script generates the simulated plot of 
+#ranges
+
+###############################################
+
+
 
 library(tikzDevice)
 
