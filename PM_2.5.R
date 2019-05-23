@@ -1,4 +1,13 @@
-## PM2.5
+
+
+##############################################
+
+#This script analyzes the real data of PM 2.5 
+#monitoring stations. 
+
+###############################################
+
+
 
 library(shape)
 library(MBA)
@@ -496,10 +505,6 @@ preds <- spPredict(fitIso, pred.covars=as.matrix(rep(1,nrow(sites_test))), pred.
 predIso <- t(preds$p.y.predictive.samples)
 
 
-#plot(1:40, y_test, pch=19, cex=0.5, xlab="observed y", ylab="predicted y",ylim=c(min(y.hat), max(y.hat)))
-#arrows(1:40, y.hat[2,], 1:40, y.hat[1,], angle=90, length=0.05)
-#arrows(1:40, y.hat[2,], 1:40, y.hat[3,], angle=90, length=0.05)
-
 
 
 
@@ -555,14 +560,14 @@ save()
 save(mseIso, crpsIso, mseAniso, crpsAniso, predIso, predAniso, fitIso, preds, file="PM2.5.Rdata")
 
 
-load("PM2.5.Rdata")
+#load("PM2.5.Rdata")
 
-load("mcmc_pm_matern.Rdata")
+#load("mcmc_pm_matern.Rdata")
 
 ## CRPS plot for isotropy
 library(tidyr)
 
-s <- c(8, 82, 21, 16)
+
 d_crps_iso = data_frame(
   prediction1 = predIso[,s[1]],
   prediction2 = predIso[,s[2]],
@@ -619,18 +624,6 @@ ggplot(d_crps_ani, aes(value, color=dist, fill=dist)) +
   theme(text = element_text(size = 20)) + 
   xlim(0, 4)
 dev.off()
-
-ani <- apply(predAniso,2,mean)
-mse_ani <- (ani-y_test)^2
-iso <- apply(predIso,2,mean)
-mse_iso <- (iso-y_test)^2
-
-diff <- mse_iso - mse_ani
-
-sort(diff, decreasing = TRUE)[40:44]
-which(mse_ani > 0.1 & mse_ani < 0.2)
-
-mean(mse_ani)
 
 
 
