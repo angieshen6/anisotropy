@@ -1,5 +1,17 @@
 ##### metropolis Matern
 
+
+
+##############################################
+
+#This script compares isotropy with geometric 
+# anisotropy with matern covariance
+
+
+###############################################
+
+
+
 library(MASS)
 library(mvtnorm)
 library(invgamma)
@@ -8,12 +20,12 @@ library(spBayes)
 library(geoR)
 
 
-ARGS <- commandArgs(trailingOnly = TRUE)
-numSites <- as.numeric(ARGS[1])
-numTotal <- as.numeric(ARGS[2])
-r <- as.numeric(ARGS[3])
-sigmasq <- as.numeric(ARGS[4])
-tausq <- as.numeric(ARGS[5])
+# ARGS <- commandArgs(trailingOnly = TRUE)
+# numSites <- as.numeric(ARGS[1])
+# numTotal <- as.numeric(ARGS[2])
+# r <- as.numeric(ARGS[3])
+# sigmasq <- as.numeric(ARGS[4])
+# tausq <- as.numeric(ARGS[5])
 omega <- 60
 a <- omega/180*pi
 mu <- 0
@@ -438,45 +450,45 @@ crpsAniso <- mean(sapply(1:ncol(predAniso), function(x) crps_test(predAniso[,x],
 name <- paste(numSites, numTotal, r, sigmasq, tausq, "matern.Rdata", sep = "_")
 save(ecIso, mseIso, crpsIso, ecAniso, mseAniso, crpsAniso, file=name)
 
-
-load("100_140_1.5_1_0.2_matern.Rdata")
-load("100_140_4_1_0.2_matern.Rdata")
-load("100_140_8_0.2_0.04_matern.Rdata")
-load("100_140_8_0.2_0.2_matern.Rdata")
-load("100_140_8_1_0.2_matern.Rdata")
-load("100_140_8_1_1_matern.Rdata")
-
-load("500_600_1.5_1_0.2_matern.Rdata")
-load("500_600_4_1_0.2_matern.Rdata")
-load("500_600_8_0.2_0.04_matern.Rdata")
-load("500_600_8_0.2_0.2_matern.Rdata")
-load("500_600_8_1_0.2_matern.Rdata")
-load("500_600_8_1_1_matern.Rdata")
-
-
-
-(0.221-0.213)/0.221 
-(0.051-0.046)/0.051
-(1.153-1.101)/1.153
-(0.234-0.233)/0.233
-
-(1.99-0.195)/0.195
-(0.19-0.175)/0.19
-(0.178-0.172)/0.178
-(0.048-0.041)/0.048
-(0.949-0.933)/0.949
-(0.19-0.175)/0.19
-
-(0.266-0.262)/0.266
-
-(0.273-0.271)/0.273
-(0.266-0.262)/0.262
-(0.13-0.123)/0.13
-(0.587-0.577)/0.587
-(0.248-0.237)/0.248
-(0.241-0.236)/0.241
-(0.124-0.114)/0.124
-(0.551-0.546)/0.551
-
-
-(0.278-0.261)/0.261
+# 
+# load("100_140_1.5_1_0.2_matern.Rdata")
+# load("100_140_4_1_0.2_matern.Rdata")
+# load("100_140_8_0.2_0.04_matern.Rdata")
+# load("100_140_8_0.2_0.2_matern.Rdata")
+# load("100_140_8_1_0.2_matern.Rdata")
+# load("100_140_8_1_1_matern.Rdata")
+# 
+# load("500_600_1.5_1_0.2_matern.Rdata")
+# load("500_600_4_1_0.2_matern.Rdata")
+# load("500_600_8_0.2_0.04_matern.Rdata")
+# load("500_600_8_0.2_0.2_matern.Rdata")
+# load("500_600_8_1_0.2_matern.Rdata")
+# load("500_600_8_1_1_matern.Rdata")
+# 
+# 
+# 
+# (0.221-0.213)/0.221 
+# (0.051-0.046)/0.051
+# (1.153-1.101)/1.153
+# (0.234-0.233)/0.233
+# 
+# (1.99-0.195)/0.195
+# (0.19-0.175)/0.19
+# (0.178-0.172)/0.178
+# (0.048-0.041)/0.048
+# (0.949-0.933)/0.949
+# (0.19-0.175)/0.19
+# 
+# (0.266-0.262)/0.266
+# 
+# (0.273-0.271)/0.273
+# (0.266-0.262)/0.262
+# (0.13-0.123)/0.13
+# (0.587-0.577)/0.587
+# (0.248-0.237)/0.248
+# (0.241-0.236)/0.241
+# (0.124-0.114)/0.124
+# (0.551-0.546)/0.551
+# 
+# 
+# (0.278-0.261)/0.261
